@@ -395,6 +395,52 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+  // 8. LATEST GOVERNMENT JOB UPDATES
+  const jobsSection = document.getElementById("jobs");
 
+  if (jobsSection && !document.getElementById("latestJobs")) {
+    const updateBox = document.createElement("div");
+    updateBox.id = "latestJobs";
+    updateBox.className = "section-head";
+
+    const heading = document.createElement("div");
+    heading.innerHTML = `
+      <span class="eyebrow">LATEST UPDATES</span>
+      <h2>नई सरकारी भर्ती अपडेट</h2>
+      <p>नई भर्तियों और नोटिफिकेशन की जानकारी आधिकारिक पोर्टल पर देखें।</p>
+    `;
+
+    updateBox.appendChild(heading);
+    jobsSection.appendChild(updateBox);
+
+    const portals = [
+      ["RSSB राजस्थान", "https://rssb.rajasthan.gov.in/"],
+      ["RPSC राजस्थान", "https://rpsc.rajasthan.gov.in/"],
+      ["SSC", "https://ssc.gov.in/"],
+      ["UPSC", "https://upsc.gov.in/"]
+    ];
+
+    const cards = document.createElement("div");
+    cards.className = "cards";
+
+    portals.forEach(([name, url]) => {
+      const card = document.createElement("article");
+      card.className = "form-card";
+
+      const title = document.createElement("h3");
+      title.textContent = name;
+
+      const link = document.createElement("a");
+      link.href = url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "नया नोटिफिकेशन देखें →";
+
+      card.append(title, link);
+      cards.appendChild(card);
+    });
+
+    jobsSection.appendChild(cards);
+  }
 });
         
