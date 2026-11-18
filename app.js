@@ -19,116 +19,71 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 2. FORMS AND SERVICES
-  const forms = [
-    {
-      title: "National Scholarship Portal",
-      category: "Scholarship",
-      description: "केंद्र सरकार की छात्रवृत्ति योजनाएँ।",
-      url: "https://scholarships.gov.in/"
-    },
-    {
-      title: "राजस्थान छात्रवृत्ति",
-      category: "Scholarship",
-      description: "राजस्थान की छात्रवृत्ति योजनाओं की जानकारी।",
-      url: "https://sje.rajasthan.gov.in/"
-    },
-    {
-      title: "राजस्थान SSO",
-      category: "Government",
-      description: "राजस्थान की ऑनलाइन सरकारी सेवाएँ।",
-      url: "https://sso.rajasthan.gov.in/"
-    },
-    {
-      title: "DigiLocker",
-      category: "Document",
-      description: "डिजिटल दस्तावेज़ प्राप्त करने की सुविधा।",
-      url: "https://www.digilocker.gov.in/"
-    },
-    {
-      title: "VMOU",
-      category: "Government",
-      description: "प्रवेश, परीक्षा और परिणाम की जानकारी।",
-      url: "https://www.vmou.ac.in/"
-    },
-    {
-      title: "REET",
-      category: "Government",
-      description: "REET परीक्षा से संबंधित आधिकारिक जानकारी।",
-      url: "https://rajeduboard.rajasthan.gov.in/"
-    }
-  ];
 
-  const formCards = document.getElementById("formCards");
-  const searchInput = document.getElementById("searchInput");
-  const filters = document.getElementById("filters");
 
-  let activeFilter = "all";
-
-  function renderForms() {
-    if (!formCards) return;
-
-    const search = searchInput ? searchInput.value.toLowerCase() : "";
-
-    const filtered = forms.filter(item => {
-      const matchesSearch =
-        (item.title + item.description).toLowerCase().includes(search);
-
-      const matchesFilter =
-        activeFilter === "all" || item.category === activeFilter;
-
-      return matchesSearch && matchesFilter;
-    });
-
-    formCards.innerHTML = "";
-
-    if (!filtered.length) {
-      formCards.textContent = "कोई जानकारी नहीं मिली।";
-      return;
-    }
-
-    filtered.forEach(item => {
-      const card = document.createElement("article");
-      card.className = "form-card";
-
-      const title = document.createElement("h3");
-      title.textContent = item.title;
-
-      const description = document.createElement("p");
-      description.textContent = item.description;
-
-      const link = document.createElement("a");
-      link.href = item.url;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.textContent = "आधिकारिक वेबसाइट खोलें →";
-
-      card.append(title, description, link);
-      formCards.appendChild(card);
-    });
+const forms = [
+  {
+    title: "National Scholarship Portal",
+    category: "Scholarship",
+    description: "केंद्र सरकार की छात्रवृत्ति योजनाएँ।",
+    url: "https://scholarships.gov.in/"
+  },
+  {
+    title: "राजस्थान छात्रवृत्ति",
+    category: "Scholarship",
+    description: "राजस्थान की छात्रवृत्ति योजनाओं की जानकारी।",
+    url: "https://sje.rajasthan.gov.in/"
+  },
+  {
+    title: "राजस्थान SSO",
+    category: "Government",
+    description: "राजस्थान की ऑनलाइन सरकारी सेवाएँ।",
+    url: "https://sso.rajasthan.gov.in/"
+  },
+  {
+    title: "DigiLocker",
+    category: "Document",
+    description: "डिजिटल दस्तावेज़ प्राप्त करने की सुविधा।",
+    url: "https://www.digilocker.gov.in/"
+  },
+  {
+    title: "VMOU",
+    category: "Government",
+    description: "प्रवेश, परीक्षा और परिणाम की जानकारी।",
+    url: "https://www.vmou.ac.in/"
+  },
+  {
+    title: "REET",
+    category: "Government",
+    description: "REET परीक्षा से संबंधित आधिकारिक जानकारी।",
+    url: "https://rajeduboard.rajasthan.gov.in/"
+  },
+  {
+    title: "Aadhaar Services",
+    category: "Document",
+    description: "आधार कार्ड की आधिकारिक ऑनलाइन सेवाएँ।",
+    url: "https://myaadhaar.uidai.gov.in/"
+  },
+  {
+    title: "राजस्थान जन आधार",
+    category: "Document",
+    description: "जन आधार नामांकन, ई-कार्ड और अपडेट।",
+    url: "https://janaadhaar.rajasthan.gov.in/"
+  },
+  {
+    title: "PAN Card Services",
+    category: "Document",
+    description: "PAN और e-PAN से जुड़ी आधिकारिक सेवाएँ।",
+    url: "https://www.incometax.gov.in/iec/foportal/"
+  },
+  {
+    title: "Voter Services",
+    category: "Document",
+    description: "वोटर पंजीकरण और पहचान पत्र सेवाएँ (18 वर्ष या अधिक)।",
+    url: "https://voters.eci.gov.in/"
   }
-
-  if (searchInput) {
-    searchInput.addEventListener("input", renderForms);
-  }
-
-  if (filters) {
-    filters.querySelectorAll("[data-filter]").forEach(button => {
-      button.addEventListener("click", () => {
-        activeFilter = button.dataset.filter;
-
-        filters.querySelectorAll("[data-filter]").forEach(btn => {
-          btn.classList.remove("active");
-        });
-
-        button.classList.add("active");
-        renderForms();
-      });
-    });
-  }
-
-  renderForms();
-
-  // 3. SCHOLARSHIP FINDER
+]
+  ;  // 3. SCHOLARSHIP FINDER
   const findScholarships = document.getElementById("findScholarships");
   const scholarshipResult = document.getElementById("scholarshipResult");
 
