@@ -197,7 +197,42 @@ const forms = [
   };
 
   document.querySelectorAll("[data-question]").forEach(button => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", () => {  const userQuestion = document.getElementById("userQuestion");
+  const sendQuestion = document.getElementById("sendQuestion");
+
+  if (userQuestion && sendQuestion && chatBody) {
+    sendQuestion.addEventListener("click", () => {
+      const question = userQuestion.value.trim();
+
+      if (!question) return;
+
+      const userBubble = document.createElement("div");
+      userBubble.className = "bubble user";
+      userBubble.textContent = question;
+
+      const answerBubble = document.createElement("div");
+      answerBubble.className = "bubble bot";
+
+      const text = question.toLowerCase();
+
+      if (text.includes("स्कॉलरशिप")) {
+        answerBubble.textContent =
+          "छात्रवृत्ति के लिए National Scholarship Portal और अपने राज्य के आधिकारिक पोर्टल पर पात्रता, तारीख और दस्तावेज़ जाँचें।";
+      } else if (text.includes("फॉर्म")) {
+        answerBubble.textContent =
+          "फॉर्म भरने से पहले नाम, जन्मतिथि, योग्यता, दस्तावेज़ और अंतिम तारीख जाँचें।";
+      } else if (text.includes("भर्ती") || text.includes("नौकरी")) {
+        answerBubble.textContent =
+          "भर्ती की जानकारी RSSB, RPSC, SSC और UPSC की आधिकारिक वेबसाइट पर देखें।";
+      } else {
+        answerBubble.textContent =
+          "इस सवाल का जवाब अभी उपलब्ध नहीं है। कृपया संबंधित सरकारी पोर्टल पर जानकारी जाँचें।";
+      }
+
+      chatBody.append(userBubble, answerBubble);
+      userQuestion.value = "";
+    });
+  }
       if (!chatBody) return;
 
       const question = button.dataset.question;
