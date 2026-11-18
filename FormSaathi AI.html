@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FormSaathi AI</title>
+<meta name="theme-color" content="#6d28d9">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#6d28d9;--p2:#8b5cf6;--soft:#f3ecff;--bg:#faf7ff;--card:#fff;--tx:#1e1433;--mu:#6b6480;--bd:#e7defa;--ok:#15803d;--warn:#b45309;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#140d24;--card:#1f1635;--tx:#f1eafd;--mu:#a99fc4;--bd:#33274f;--soft:#2a1f45;--p:#a78bfa;--p2:#8b5cf6;--ok:#4ade80;--warn:#fbbf24}}
+:root[data-theme="dark"]{--bg:#140d24;--card:#1f1635;--tx:#f1eafd;--mu:#a99fc4;--bd:#33274f;--soft:#2a1f45;--p:#a78bfa;--p2:#8b5cf6;--ok:#4ade80;--warn:#fbbf24}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 Inter,"Noto Sans Devanagari",system-ui,sans-serif;padding-bottom:84px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:#6d28d9;z-index:20}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;padding:12px 16px}
+.row{display:flex;align-items:center;gap:8px}.sp{flex:1}
+.brand{font-weight:700;font-size:18px}.tag{font-size:12px;opacity:.9}
+.ib{background:rgba(255,255,255,.2);color:#fff;border:0;border-radius:10px;padding:7px 11px;font:inherit;font-weight:600;cursor:pointer}
+#q{width:100%;margin-top:10px;border:0;border-radius:12px;padding:11px 14px;font:inherit;background:#fff;color:#1e1433}
+main{max-width:880px;margin:0 auto;padding:16px}
+h2{font-size:19px;margin:6px 0 12px}h3{margin:0 0 4px;font-size:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 1px 6px rgba(109,40,217,.06)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+.tile{display:block;text-decoration:none;color:inherit;text-align:center;padding:16px 8px}
+.tile .i{font-size:28px;display:block;margin-bottom:4px}.tile b{font-size:14px}
+.hero{background:linear-gradient(135deg,#6d28d9,#a78bfa);color:#fff;border:0}
+.hero p{margin:4px 0 0;opacity:.95}
+.chip{display:inline-block;padding:5px 12px;border-radius:99px;background:var(--soft);color:var(--p);border:1px solid var(--bd);font:inherit;font-size:13px;margin:0 6px 8px 0;cursor:pointer}
+.chip.on{background:var(--p);color:#fff;border-color:var(--p)}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;background:#fef3c7;color:#92400e;margin-bottom:6px}
+.mu{color:var(--mu);font-size:13px}
+.btn{background:var(--p);color:#fff;border:0;border-radius:12px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer}
+.btn.o{background:transparent;color:var(--p);border:1px solid var(--p)}
+input[type=text],input[type=date]{width:100%;padding:10px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;margin-bottom:8px}
+details{border-top:1px solid var(--bd);padding:8px 0}summary{cursor:pointer;font-weight:600}
+ol,ul{padding-left:20px;margin:6px 0}
+.bar{height:10px;background:var(--soft);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--p2))}
+label.ck{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--bd)}label.ck input{width:20px;height:20px;accent-color:#6d28d9}
+.done span{text-decoration:line-through;color:var(--mu)}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--bd);display:flex;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:10}
+nav a{flex:1;text-align:center;text-decoration:none;color:var(--mu);font-size:10.5px;padding:4px 0;border-radius:10px}
+nav a i{display:block;font-style:normal;font-size:20px}nav a.on{color:var(--p);background:var(--soft);font-weight:700}
+.warn{background:#fffbeb;border:1px solid #fcd34d;color:#78350f;border-radius:12px;padding:10px 12px;font-size:13px;margin-bottom:12px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .warn{background:#3b2a05;color:#fde68a;border-color:#92400e}}
+</style>
+</head>
+<body>
+<header>
+  <div class="row"><div><div class="brand">🎓 FormSaathi AI</div><div class="tag" id="tag"></div></div><span class="sp"></span>
+  <button class="ib" id="inst" hidden>⬇ Install</button><button class="ib" id="lang">हिं / EN</button></div>
+  <input id="q" type="search" autocomplete="off">
+</header>
+<main id="app"></main>
+<nav id="nav"></nav>
+<script>
+const $=s=>document.querySelector(s);
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let lang=store.get('fs_lang','hi');
+const UI={
+tag:{en:'हर फॉर्म की जानकारी, एक ही जगह।',hi:'हर फॉर्म की जानकारी, एक ही जगह।'},
+ph:{en:'Search scholarships, forms, documents…',hi:'छात्रवृत्ति, फॉर्म, दस्तावेज़ खोजें…'},
+home:{en:'Home',hi:'होम'},sch:{en:'Scholarships',hi:'छात्रवृत्ति'},forms:{en:'Form Guide',hi:'फॉर्म गाइड'},docs:{en:'Documents',hi:'दस्तावेज़'},dates:{en:'Dates',hi:'तिथियाँ'},help:{en:'Help',hi:'सहायता'},
+hello:{en:'Namaste, Student! 🙏',hi:'नमस्ते, विद्यार्थी! 🙏'},
+sub:{en:'Find scholarships, understand forms and keep documents ready.',hi:'छात्रवृत्ति खोजें, फॉर्म समझें और दस्तावेज़ तैयार रखें।'},
+disc:{en:'⚠ Sample data only. Scholarships, forms and dates shown here are illustrative examples, not real notices. Always confirm details on the official website before applying.',hi:'⚠ केवल सैंपल डेटा। यहाँ दी गई छात्रवृत्तियाँ, फॉर्म और तिथियाँ उदाहरण मात्र हैं, असली सूचना नहीं। आवेदन से पहले आधिकारिक वेबसाइट पर जाँच अवश्य करें।'},
+sample:{en:'SAMPLE DATA',hi:'सैंपल डेटा'},all:{en:'All',hi:'सभी'},elig:{en:'Who may apply',hi:'कौन आवेदन कर सकता है'},need:{en:'Documents usually needed',hi:'आमतौर पर ज़रूरी दस्तावेज़'},
+verify:{en:'Verify on the official website before applying.',hi:'आवेदन से पहले आधिकारिक वेबसाइट पर जाँचें।'},
+steps:{en:'Steps',hi:'चरण'},ready:{en:'Documents ready',hi:'तैयार दस्तावेज़'},
+add:{en:'Add your own date',hi:'अपनी तिथि जोड़ें'},title:{en:'Title (e.g. Form last date)',hi:'शीर्षक (जैसे फॉर्म की अंतिम तिथि)'},save:{en:'Save',hi:'सहेजें'},
+tbc:{en:'Date not set — check official notice',hi:'तिथि तय नहीं — आधिकारिक सूचना देखें'},left:{en:'days left',hi:'दिन बाकी'},today:{en:'Today',hi:'आज'},past:{en:'Passed',hi:'बीत गई'},del:{en:'Remove',hi:'हटाएँ'},
+mine:{en:'My saved dates',hi:'मेरी सहेजी तिथियाँ'},timeline:{en:'Typical application timeline (sample)',hi:'सामान्य आवेदन समयरेखा (सैंपल)'},
+faq:{en:'Frequently asked questions',hi:'अक्सर पूछे जाने वाले प्रश्न'},safe:{en:'Stay safe from fraud',hi:'धोखाधड़ी से बचें'},
+none:{en:'No results found.',hi:'कोई परिणाम नहीं मिला।'},res:{en:'Search results',hi:'खोज परिणाम'},
+note:{en:'Ask a question (saved on this device only)',hi:'प्रश्न लिखें (केवल इसी डिवाइस में सहेजा जाएगा)'},
+}; 
+const u=k=>UI[k][lang];
+const L=o=>o[lang];
+const SCH=[
+{id:1,c:'merit',n:{en:'Sample Merit Scholarship',hi:'सैंपल मेरिट छात्रवृत्ति'},lv:{en:'Class 11–12',hi:'कक्षा 11–12'},e:{en:'Students with good marks in the previous exam. Income limit may apply.',hi:'पिछली परीक्षा में अच्छे अंक वाले विद्यार्थी। आय सीमा लागू हो सकती है।'},d:['d1','d2','d3','d4']},
+{id:2,c:'income',n:{en:'Sample Need-Based Scholarship',hi:'सैंपल आवश्यकता-आधारित छात्रवृत्ति'},lv:{en:'School & College',hi:'स्कूल व कॉलेज'},e:{en:'Students from families below a stated income limit.',hi:'निर्धारित आय सीमा से कम आय वाले परिवारों के विद्यार्थी।'},d:['d2','d3','d4','d5']},
+{id:3,c:'girls',n:{en:'Sample Girls’ Education Scholarship',hi:'सैंपल बालिका शिक्षा छात्रवृत्ति'},lv:{en:'School & College',hi:'स्कूल व कॉलेज'},e:{en:'Female students enrolled in a recognised institution.',hi:'मान्यता प्राप्त संस्थान में नामांकित छात्राएँ।'},d:['d1','d2','d4','d6']},
+{id:4,c:'category',n:{en:'Sample Category / Minority Scholarship',hi:'सैंपल श्रेणी / अल्पसंख्यक छात्रवृत्ति'},lv:{en:'Class 9 – PG',hi:'कक्षा 9 – पीजी'},e:{en:'Students belonging to eligible categories (SC/ST/OBC/Minority) as per the scheme.',hi:'योजना के अनुसार पात्र श्रेणी (SC/ST/OBC/अल्पसंख्यक) के विद्यार्थी।'},d:['d1','d2','d3','d5','d7']},
+{id:5,c:'college',n:{en:'Sample Higher Education Scholarship',hi:'सैंपल उच्च शिक्षा छात्रवृत्ति'},lv:{en:'UG / PG',hi:'यूजी / पीजी'},e:{en:'College students with admission proof and previous year marks.',hi:'प्रवेश प्रमाण और पिछले वर्ष के अंकों वाले कॉलेज विद्यार्थी।'},d:['d1','d2','d4','d8']}];
+const CATS={all:u=>u('all'),merit:{en:'Merit',hi:'मेरिट'},income:{en:'Need-based',hi:'आवश्यकता'},girls:{en:'Girls',hi:'बालिका'},category:{en:'Category',hi:'श्रेणी'},college:{en:'College',hi:'कॉलेज'}};
+const DOCS={d1:{en:'Aadhaar card',hi:'आधार कार्ड'},d2:{en:'Previous marksheet',hi:'पिछली मार्कशीट'},d3:{en:'Income certificate',hi:'आय प्रमाणपत्र'},d4:{en:'Bank passbook (account in student’s name)',hi:'बैंक पासबुक (छात्र के नाम खाता)'},d5:{en:'Caste / category certificate',hi:'जाति / श्रेणी प्रमाणपत्र'},d6:{en:'School / college ID card',hi:'स्कूल / कॉलेज आईडी कार्ड'},d7:{en:'Domicile (residence) certificate',hi:'निवास प्रमाणपत्र'},d8:{en:'Admission / fee receipt',hi:'प्रवेश / फीस रसीद'},d9:{en:'Passport-size photo',hi:'पासपोर्ट साइज़ फोटो'},d10:{en:'Signature (scanned)',hi:'हस्ताक्षर (स्कैन)'},d11:{en:'Active mobile number & email',hi:'चालू मोबाइल नंबर व ईमेल'}};
+const FORMS=[
+{n:{en:'Scholarship Application (sample guide)',hi:'छात्रवृत्ति आवेदन (सैंपल गाइड)'},s:{en:['Open the official scholarship portal of the scheme.','Register with mobile number and email; note your ID.','Fill personal, education and bank details exactly as in documents.','Upload scanned documents in the size and format asked.','Preview, submit, and download the acknowledgement.','Take the printout to your institute if verification is required.'],hi:['योजना के आधिकारिक पोर्टल पर जाएँ।','मोबाइल व ईमेल से रजिस्टर करें; अपनी आईडी नोट करें।','व्यक्तिगत, शैक्षणिक और बैंक विवरण दस्तावेज़ों के अनुसार भरें।','माँगे गए साइज़/फॉर्मेट में दस्तावेज़ अपलोड करें।','प्रीव्यू देखकर सबमिट करें और पावती डाउनलोड करें।','सत्यापन ज़रूरी हो तो प्रिंटआउट संस्थान में जमा करें।']}},
+{n:{en:'Entrance Exam Form (sample guide)',hi:'प्रवेश परीक्षा फॉर्म (सैंपल गाइड)'},s:{en:['Read the official notice for eligibility and fee.','Create an account on the exam’s official site.','Fill details, choose exam city and subjects.','Upload photo and signature as per size rules.','Pay the fee only on the official payment page.','Save the confirmation page.'],hi:['पात्रता और फीस के लिए आधिकारिक सूचना पढ़ें।','परीक्षा की आधिकारिक साइट पर खाता बनाएँ।','विवरण भरें, परीक्षा शहर और विषय चुनें।','नियमों के अनुसार फोटो व हस्ताक्षर अपलोड करें।','फीस केवल आधिकारिक पेमेंट पेज पर जमा करें।','कन्फर्मेशन पेज सुरक्षित रखें।']}},
+{n:{en:'Income / Caste Certificate (sample guide)',hi:'आय / जाति प्रमाणपत्र (सैंपल गाइड)'},s:{en:['Check your state’s e-district / service portal.','Keep Aadhaar, address proof and a self-declaration ready.','Fill the online form and upload documents.','Note the application number and track status.','Download the certificate once approved.'],hi:['अपने राज्य का ई-डिस्ट्रिक्ट / सेवा पोर्टल देखें।','आधार, पते का प्रमाण और स्व-घोषणा तैयार रखें।','ऑनलाइन फॉर्म भरें और दस्तावेज़ अपलोड करें।','आवेदन नंबर नोट करें और स्थिति ट्रैक करें।','स्वीकृत होने पर प्रमाणपत्र डाउनलोड करें।']}},
+{n:{en:'Bank Account Linking for Scholarship (sample guide)',hi:'छात्रवृत्ति के लिए बैंक खाता लिंक (सैंपल गाइड)'},s:{en:['Open an account in the student’s own name if none exists.','Link Aadhaar with the account at the bank.','Ensure the name matches the Aadhaar exactly.','Keep the account active and note the IFSC code.'],hi:['खाता न हो तो छात्र के नाम से खोलें।','बैंक में आधार को खाते से लिंक कराएँ।','नाम आधार से बिल्कुल मेल खाए, यह जाँचें।','खाता चालू रखें और IFSC कोड नोट करें।']}}];
+const CHK=[{g:{en:'Identity',hi:'पहचान'},i:['d1','d6','d9','d10']},{g:{en:'Education',hi:'शिक्षा'},i:['d2','d8']},{g:{en:'Certificates',hi:'प्रमाणपत्र'},i:['d3','d5','d7']},{g:{en:'Banking & Contact',hi:'बैंक व संपर्क'},i:['d4','d11']}];
+const TL=[{en:'Notification / notice released',hi:'सूचना जारी होना'},{en:'Online registration opens',hi:'ऑनलाइन पंजीकरण शुरू'},{en:'Last date to submit form',hi:'फॉर्म जमा करने की अंतिम तिथि'},{en:'Institute verification',hi:'संस्थान सत्यापन'},{en:'Result / payment status',hi:'परिणाम / भुगतान स्थिति'}];
+const FAQ=[
+{q:{en:'Where should I apply?',hi:'आवेदन कहाँ करना चाहिए?'},a:{en:'Only on the official government or institution website. Check the web address carefully.',hi:'केवल आधिकारिक सरकारी या संस्थान की वेबसाइट पर। वेब पते को ध्यान से जाँचें।'}},
+{q:{en:'My name differs between documents. What to do?',hi:'दस्तावेज़ों में नाम अलग है, क्या करें?'},a:{en:'Get it corrected first, or attach a name-correction proof. Mismatches are a common reason for rejection.',hi:'पहले नाम सुधरवाएँ या सुधार का प्रमाण लगाएँ। नाम का अंतर अस्वीकृति का आम कारण है।'}},
+{q:{en:'I missed the last date.',hi:'अंतिम तिथि निकल गई।'},a:{en:'Check the official site for any extension notice and contact your institute’s scholarship desk.',hi:'आधिकारिक साइट पर तिथि बढ़ने की सूचना देखें और संस्थान के छात्रवृत्ति डेस्क से मिलें।'}},
+{q:{en:'Do I need to pay an agent?',hi:'क्या एजेंट को पैसे देने होंगे?'},a:{en:'No. You can apply yourself. Be careful of anyone demanding money for a “guaranteed” scholarship.',hi:'नहीं। आप खुद आवेदन कर सकते हैं। “पक्की” छात्रवृत्ति के नाम पर पैसे माँगने वालों से सावधान रहें।'}}];
+const SAFE={en:['Never share OTP, PIN or passwords.','Official sites rarely ask for fees to “release” a scholarship.','Ask your school/college teacher if unsure.'],hi:['OTP, पिन या पासवर्ड कभी साझा न करें।','छात्रवृत्ति “जारी” करने के नाम पर फीस की माँग संदिग्ध है।','संदेह हो तो स्कूल/कॉलेज के शिक्षक से पूछें।']};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let cat='all';
+const checked=()=>store.get('fs_chk',{});
+const mydates=()=>store.get('fs_dates',[]);
+const dis=()=>`<div class="warn">${u('disc')}</div>`;
+const NAV=[['home','🏠'],['sch','🎓'],['forms','📝'],['docs','✅'],['dates','📅'],['help','💬']];
+function schCard(s){return `<div class="card"><span class="badge">${u('sample')}</span><h3>${L(s.n)}</h3><div class="mu">${L(s.lv)}</div>
+<p><b>${u('elig')}:</b> ${L(s.e)}</p><details><summary>${u('need')}</summary><ul>${s.d.map(k=>`<li>${L(DOCS[k])}</li>`).join('')}</ul></details><p class="mu">ℹ ${u('verify')}</p></div>`}
+function formCard(f){return `<div class="card"><span class="badge">${u('sample')}</span><details open><summary>${L(f.n)}</summary><ol>${f.s[lang].map(x=>`<li>${x}</li>`).join('')}</ol></details></div>`}
+function faqCard(f){return `<details><summary>${L(f.q)}</summary><p>${L(f.a)}</p></details>`}
+function daysLeft(d){const t=new Date();t.setHours(0,0,0,0);return Math.round((new Date(d+'T00:00:00')-t)/864e5)}
+function progress(){const all=CHK.flatMap(g=>g.i),c=checked(),n=all.filter(k=>c[k]).length;return [n,all.length]}
+const V={
+home(){const [n,t]=progress(),up=mydates().filter(x=>daysLeft(x.d)>=0).sort((a,b)=>a.d<b.d?-1:1).slice(0,3);
+return `<div class="card hero"><h2 style="margin:0">${u('hello')}</h2><p>${u('sub')}</p></div>${dis()}
+<div class="grid">${NAV.slice(1).map(([k,i])=>`<a class="card tile" href="#${k}"><span class="i">${i}</span><b>${u(k)}</b></a>`).join('')}</div>
+<div class="card"><h3>✅ ${u('ready')}: ${n}/${t}</h3><div class="bar"><i style="width:${n/t*100}%"></i></div></div>
+<div class="card"><h3>📅 ${u('mine')}</h3>${up.length?up.map(x=>`<div>${esc(x.t)} — <b>${x.d}</b> (${daysLeft(x.d)} ${u('left')})</div>`).join(''):`<span class="mu">${u('tbc')}</span>`}</div>`},
+sch(){const ks=Object.keys(CATS);return `<h2>🎓 ${u('sch')}</h2>${dis()}<div>${ks.map(k=>`<button class="chip ${cat===k?'on':''}" data-cat="${k}">${k==='all'?u('all'):L(CATS[k])}</button>`).join('')}</div>${SCH.filter(s=>cat==='all'||s.c===cat).map(schCard).join('')}`},
+forms(){return `<h2>📝 ${u('forms')}</h2>${dis()}${FORMS.map(formCard).join('')}`},
+docs(){const c=checked(),[n,t]=progress();return `<h2>✅ ${u('docs')}</h2><div class="card"><b>${u('ready')}: ${n}/${t}</b><div class="bar" style="margin-top:6px"><i style="width:${n/t*100}%"></i></div></div>
+${CHK.map(g=>`<div class="card"><h3>${L(g.g)}</h3>${g.i.map(k=>`<label class="ck ${c[k]?'done':''}"><input type="checkbox" data-ck="${k}" ${c[k]?'checked':''}><span>${L(DOCS[k])}</span></label>`).join('')}</div>`).join('')}`},
+dates(){const m=mydates().sort((a,b)=>a.d<b.d?-1:1);return `<h2>📅 ${u('dates')}</h2>${dis()}
+<div class="card"><h3>${u('add')}</h3><input type="text" id="dt" placeholder="${u('title')}"><input type="date" id="dd"><button class="btn" data-act="add">${u('save')}</button></div>
+<h3>${u('mine')}</h3>${m.length?m.map((x,i)=>{const n=daysLeft(x.d);return `<div class="card row"><div class="sp"><b>${esc(x.t)}</b><div class="mu">${x.d} · ${n>0?n+' '+u('left'):n===0?u('today'):u('past')}</div></div><button class="btn o" data-del="${i}">${u('del')}</button></div>`}).join(''):`<p class="mu">—</p>`}
+<h3 style="margin-top:14px">${u('timeline')}</h3>${TL.map(x=>`<div class="card"><span class="badge">${u('sample')}</span><div><b>${L(x)}</b></div><div class="mu">${u('tbc')}</div></div>`).join('')}`},
+help(){const q=store.get('fs_notes',[]);return `<h2>💬 ${u('help')}</h2><div class="card"><h3>${u('faq')}</h3>${FAQ.map(faqCard).join('')}</div>
+<div class="card"><h3>🛡 ${u('safe')}</h3><ul>${SAFE[lang].map(x=>`<li>${x}</li>`).join('')}</ul></div>
+<div class="card"><h3>${u('note')}</h3><input type="text" id="nt"><button class="btn" data-act="note">${u('save')}</button>${q.map(x=>`<p class="mu">• ${esc(x)}</p>`).join('')}</div>`},
+search(){const k=$('#q').value.trim().toLowerCase();if(!k)return V.home();const has=(...o)=>o.some(x=>JSON.stringify(x).toLowerCase().includes(k));
+const a=SCH.filter(s=>has(s.n,s.e,s.d.map(d=>DOCS[d]))),b=FORMS.filter(f=>has(f.n,f.s)),c=Object.keys(DOCS).filter(d=>has(DOCS[d])),d=FAQ.filter(f=>has(f.q,f.a)),e=mydates().filter(x=>x.t.toLowerCase().includes(k));
+const out=a.map(schCard).join('')+b.map(formCard).join('')+(c.length?`<div class="card"><h3>${u('docs')}</h3><ul>${c.map(x=>`<li>${L(DOCS[x])}</li>`).join('')}</ul></div>`:'')+(d.length?`<div class="card">${d.map(faqCard).join('')}</div>`:'')+e.map(x=>`<div class="card">📅 ${esc(x.t)} — ${x.d}</div>`).join('');
+return `<h2>🔍 ${u('res')}</h2>${out||`<p class="mu">${u('none')}</p>`}`}};
+function route(){const h=(location.hash||'#home').slice(1);const r=V[h]?h:'home';
+$('#app').innerHTML=V[r]();$('#nav').innerHTML=NAV.map(([k,i])=>`<a href="#${k}" class="${k===r?'on':''}"><i>${i}</i>${u(k)}</a>`).join('');
+document.documentElement.lang=lang==='hi'?'hi':'en';$('#tag').textContent=u('tag');$('#q').placeholder=u('ph');window.scrollTo(0,0)}
+$('#q').addEventListener('input',()=>{if(location.hash!=='#search'){location.hash='search'}else route()});
+window.addEventListener('hashchange',route);
+$('#lang').onclick=()=>{lang=lang==='hi'?'en':'hi';store.set('fs_lang',lang);route()};
+document.addEventListener('click',e=>{const t=e.target;
+if(t.dataset.cat){cat=t.dataset.cat;route()}
+if(t.dataset.del){const m=mydates().sort((a,b)=>a.d<b.d?-1:1);m.splice(+t.dataset.del,1);store.set('fs_dates',m);route()}
+if(t.dataset.act==='add'){const a=$('#dt').value.trim(),b=$('#dd').value;if(a&&b){const m=mydates();m.push({t:a,d:b});store.set('fs_dates',m);route()}}
+if(t.dataset.act==='note'){const a=$('#nt').value.trim();if(a){const m=store.get('fs_notes',[]);m.push(a);store.set('fs_notes',m);route()}}});
+document.addEventListener('change',e=>{const k=e.target.dataset.ck;if(k){const c=checked();c[k]=e.target.checked;store.set('fs_chk',c);route()}});
+let dp;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;$('#inst').hidden=false});
+$('#inst').onclick=async()=>{if(dp){dp.prompt();dp=null;$('#inst').hidden=true}};
+try{if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{})}catch(e){}
+route();
+</script>
+</body>
+</html>

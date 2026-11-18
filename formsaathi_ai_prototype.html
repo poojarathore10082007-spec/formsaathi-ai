@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#5141a5">
+<title>FormSaathi AI — Prototype</title>
+<style>
+:root{--purple:#5141a5;--light:#f3f1ff;--ink:#24213a;--muted:#6f6b82}
+*{box-sizing:border-box}body{margin:0;background:#f7f7fb;color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Devanagari",sans-serif}
+header{background:linear-gradient(135deg,#5141a5,#7966d6);color:white;padding:24px 18px 30px;border-radius:0 0 24px 24px}
+.brand{font-size:22px;font-weight:800}.tag{opacity:.9;font-size:13px;margin-top:3px}
+main{max-width:720px;margin:auto;padding:16px}
+.search{display:flex;gap:8px;background:white;padding:10px;border-radius:14px;margin-top:-12px;box-shadow:0 5px 20px #25204412}
+input{width:100%;border:0;outline:0;font:inherit;padding:7px}
+h2{font-size:17px;margin:22px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.card{background:white;border:1px solid #eceaf5;border-radius:16px;padding:15px;text-align:left;cursor:pointer;color:var(--ink);font:inherit;min-height:104px}
+.card b{display:block;margin:8px 0 3px}.card small{color:var(--muted)}
+.icon{font-size:24px}
+.panel{background:white;border:1px solid #eceaf5;border-radius:16px;padding:16px;margin-top:14px}
+.panel h3{margin:0 0 8px;font-size:17px}
+ul{padding-left:20px;line-height:1.8}
+.note{font-size:12px;color:var(--muted);line-height:1.6}
+button.action{background:var(--purple);color:white;border:0;border-radius:10px;padding:10px 14px;font:inherit;margin-top:8px}
+footer{text-align:center;padding:24px;color:var(--muted);font-size:12px}
+.hidden{display:none}
+@media(min-width:560px){.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">📘 FormSaathi AI</div>
+  <div class="tag">हर फॉर्म की जानकारी, एक ही जगह</div>
+  <p style="margin:20px 0 0;font-size:19px;font-weight:700">नमस्ते! 👋</p>
+  <div style="opacity:.92;font-size:14px">आज आपको किस चीज़ में मदद चाहिए?</div>
+</header>
+<main>
+  <div class="search"><span>🔎</span><input id="search" placeholder="Scholarship, form या document खोजें..." oninput="filterCards()"></div>
+  <h2>आपके लिए सेवाएँ</h2>
+  <div class="grid" id="cards">
+    <button class="card" data-key="scholarship छात्रवृत्ति योजना" onclick="show('scholarship')"><span class="icon">🎓</span><b>Scholarship Finder</b><small>छात्रवृत्ति की जानकारी</small></button>
+    <button class="card" data-key="form guide आवेदन" onclick="show('form')"><span class="icon">📝</span><b>Form Guide</b><small>आवेदन के आसान चरण</small></button>
+    <button class="card" data-key="documents दस्तावेज checklist" onclick="show('docs')"><span class="icon">📂</span><b>Document Checklist</b><small>जरूरी कागज़ात की सूची</small></button>
+    <button class="card" data-key="important dates last date तारीख" onclick="show('dates')"><span class="icon">📅</span><b>Important Dates</b><small>तारीखें और रिमाइंडर</small></button>
+    <button class="card" data-key="help centre सवाल सहायता" onclick="show('help')"><span class="icon">💬</span><b>Help Centre</b><small>आम सवालों के जवाब</small></button>
+  </div>
+  <section id="detail" class="panel hidden" aria-live="polite"></section>
+  <section class="panel">
+    <h3>✨ शुरुआत कैसे करें?</h3>
+    <p style="margin-bottom:0">ऊपर दिए गए किसी फीचर पर टैप करें। यह अभी शुरुआती डेमो है; इसमें दिखाई गई जानकारी नमूने के लिए है।</p>
+  </section>
+  <p class="note" style="margin-top:14px">महत्वपूर्ण: यह स्वतंत्र शैक्षणिक सहायता प्रोटोटाइप है, सरकारी वेबसाइट नहीं। आवेदन की पात्रता, दस्तावेज़ और अंतिम तारीख संबंधित आधिकारिक पोर्टल से अवश्य जाँचें। यहाँ Aadhaar नंबर, OTP, पासवर्ड या बैंक विवरण न डालें।</p>
+</main>
+<footer>FormSaathi AI · शुरुआती प्रोटोटाइप</footer>
+<script>
+const content={
+ scholarship:['Scholarship Finder','यहाँ राज्य, कक्षा और कोर्स के आधार पर छात्रवृत्ति की जानकारी व्यवस्थित की जाएगी।','• योजना का नाम और आधिकारिक लिंक<br>• पात्रता और जरूरी दस्तावेज़<br>• आवेदन की तारीख — केवल आधिकारिक पुष्टि के बाद'],
+ form:['Form Guide','किसी आवेदन को भरने से पहले उसकी आधिकारिक सूचना पढ़ें।','• पोर्टल पर नया पंजीकरण<br>• आवेदन निर्देश समझें<br>• दस्तावेज़ और विवरण जाँचें<br>• जमा करने से पहले पूरी जानकारी दोबारा देखें'],
+ docs:['Document Checklist','हर योजना के दस्तावेज़ अलग हो सकते हैं। यह केवल सामान्य उदाहरण है।','• पहचान/आयु प्रमाण, जहाँ आवश्यक हो<br>• शैक्षणिक अंकतालिका<br>• आय प्रमाणपत्र, यदि माँगा गया हो<br>• बैंक विवरण केवल आधिकारिक पोर्टल पर, जरूरत होने पर'],
+ dates:['Important Dates','अभी इस डेमो में लाइव तारीखें उपलब्ध नहीं हैं।','• आवेदन शुरू होने की तारीख<br>• अंतिम तारीख<br>• सुधार विंडो<br>• परिणाम/नवीनीकरण की तारीख<br><br>सभी तारीखें आधिकारिक सूचना से सत्यापित होंगी।'],
+ help:['Help Centre','आम सवालों के जवाब और सरल हिंदी में मार्गदर्शन यहाँ मिलेगा।','• फॉर्म में त्रुटि का अर्थ समझना<br>• सही आधिकारिक पोर्टल ढूँढना<br>• आवेदन की स्थिति कहाँ जाँचें']
+};
+function show(key){const d=document.getElementById('detail'),v=content[key];d.classList.remove('hidden');d.innerHTML='<h3>'+v[0]+'</h3><p>'+v[1]+'</p><ul><li>'+v[2].replaceAll('<br>','</li><li>').replaceAll('• ','')+'</li></ul><button class="action" onclick="document.getElementById(\\'detail\\').classList.add(\\'hidden\\')">बंद करें</button>';d.scrollIntoView({behavior:'smooth',block:'nearest'})}
+function filterCards(){const q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('.card').forEach(c=>c.style.display=c.dataset.key.includes(q)?'block':'none')}
+</script>
+</body>
+</html>

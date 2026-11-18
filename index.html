@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1746a2">
+  <meta name="description" content="FormSaathi AI — विद्यार्थियों के फॉर्म और स्कॉलरशिप की जानकारी">
+  <title>FormSaathi AI</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#" aria-label="FormSaathi home"><span class="logo">F</span><span>FormSaathi <b>AI</b><small>हर फॉर्म की जानकारी, एक ही जगह।</small></span></a>
+  <button class="menu-btn" id="menuBtn" aria-label="मेन्यू">☰</button>
+</header>
+<nav class="nav" id="nav">
+  <a href="#home">होम</a><a href="#forms">फॉर्म</a><a href="#scholarship">स्कॉलरशिप</a><a href="#checklist">डॉक्यूमेंट चेकलिस्ट</a><a href="#assistant">AI सहायता</a>
+</nav>
+<main>
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <span class="eyebrow">STUDENTS • INDIA</span>
+    <h1>आपके हर फॉर्म का<br><em>सही साथी।</em></h1>
+    <p>सरकारी फॉर्म, छात्रवृत्ति और जरूरी दस्तावेज़ों की जानकारी एक ही जगह।</p>
+    <a class="primary-btn" href="#forms">जानकारी देखें <span>→</span></a>
+  </div>
+  <div class="hero-art" aria-hidden="true"><div class="paper">✓<small>FORM<br>READY</small></div><div class="spark">✦</div></div>
+</section>
+<div class="notice"><b>महत्वपूर्ण:</b> यह शुरुआती डेमो है। नीचे दिए उदाहरण केवल प्रदर्शन के लिए हैं। आवेदन करने से पहले संबंधित सरकारी पोर्टल पर तारीख, पात्रता और नियम जरूर जाँचें।</div>
+<section class="section" id="forms">
+  <div class="section-head"><div><span class="eyebrow">EXPLORE</span><h2>फॉर्म और योजनाएँ</h2><p>अपनी जरूरत के अनुसार जानकारी खोजें।</p></div></div>
+  <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="जैसे: छात्रवृत्ति, परीक्षा, प्रमाण पत्र..."></label>
+  <div class="chips" id="filters">
+    <button class="chip active" data-filter="सभी">सभी</button><button class="chip" data-filter="छात्रवृत्ति">छात्रवृत्ति</button><button class="chip" data-filter="परीक्षा">परीक्षा</button><button class="chip" data-filter="प्रमाण पत्र">प्रमाण पत्र</button><button class="chip" data-filter="प्रवेश">प्रवेश</button>
+  </div>
+  <div class="cards" id="formCards"></div>
+</section>
+<section class="section tinted" id="scholarship">
+  <div class="section-head"><div><span class="eyebrow">SCHOLARSHIP FINDER</span><h2>स्कॉलरशिप खोजें</h2><p>बुनियादी जानकारी चुनें और संभावित विकल्प देखें।</p></div></div>
+  <div class="finder">
+    <div><label for="classLevel">आपकी पढ़ाई</label><select id="classLevel"><option value="">चुनें</option><option>कक्षा 9–10</option><option>कक्षा 11–12</option><option>स्नातक (BA/BSc/BCom)</option><option>डिप्लोमा / ITI</option><option>अन्य</option></select></div>
+    <div><label for="state">राज्य</label><select id="state"><option value="">चुनें</option><option>राजस्थान</option><option>अन्य राज्य</option></select></div>
+    <div><label for="category">वर्ग</label><select id="category"><option value="">चुनें</option><option>General / EWS</option><option>OBC</option><option>SC</option><option>ST</option><option>अन्य</option></select></div>
+    <button class="primary-btn full" id="findScholarships">विकल्प देखें →</button>
+    <div id="scholarshipResult" class="result" aria-live="polite">अपनी जानकारी चुनकर “विकल्प देखें” दबाएँ।</div>
+  </div>
+</section>
+<section class="section" id="checklist">
+  <div class="section-head"><div><span class="eyebrow">BE PREPARED</span><h2>डॉक्यूमेंट चेकलिस्ट</h2><p>जरूरी दस्तावेज़ों को टिक करके अपनी तैयारी ट्रैक करें।</p></div></div>
+  <div class="checklist" id="checklistItems"></div>
+  <p class="muted">चेकलिस्ट इसी ब्राउज़र में सेव रहती है। हर योजना में दस्तावेज़ अलग हो सकते हैं।</p>
+</section>
+<section class="section tinted" id="assistant">
+  <div class="section-head"><div><span class="eyebrow">FORM-SAATHI HELP</span><h2>सहायता केंद्र</h2><p>आम सवालों के जवाब पाने के लिए नीचे सवाल चुनें।</p></div></div>
+  <div class="assistant">
+    <div class="chat-head"><span class="bot-icon">✦</span><div><b>FormSaathi सहायता</b><small>डेमो FAQ सहायक</small></div><span class="online">●</span></div>
+    <div class="chat-body" id="chatBody"><div class="bubble bot">नमस्ते! मैं फॉर्म से जुड़ी सामान्य जानकारी में मदद कर सकता हूँ। नीचे कोई सवाल चुनें।</div></div>
+    <div class="quick-questions">
+      <button data-question="स्कॉलरशिप के लिए कौन से दस्तावेज़ चाहिए?">स्कॉलरशिप के दस्तावेज़?</button>
+      <button data-question="फॉर्म भरने से पहले क्या जाँचें?">फॉर्म भरने से पहले?</button>
+      <button data-question="आवेदन की सही तारीख कहाँ देखें?">आवेदन की तारीख?</button>
+    </div>
+  </div>
+</section>
+<section class="premium">
+  <div><span class="eyebrow">COMING SOON</span><h2>FormSaathi Premium</h2><p>पर्सनलाइज्ड चेकलिस्ट, रिमाइंडर और एडवांस्ड सहायता — जल्द उपलब्ध।</p></div>
+  <span class="premium-tag">PREVIEW</span>
+</section>
+</main>
+<footer><div class="brand"><span class="logo">F</span><span>FormSaathi <b>AI</b><small>विद्यार्थियों के साथ, हर कदम पर।</small></span></div><p>© 2026 FormSaathi AI • जानकारी को आधिकारिक पोर्टल से सत्यापित करें।</p><div class="footer-links"><a href="privacy.html">गोपनीयता</a><a href="disclaimer.html">अस्वीकरण</a></div></footer>
+<script src="app.js"></script>
+</body>
+</html>
