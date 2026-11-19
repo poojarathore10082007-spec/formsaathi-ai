@@ -1,5 +1,4 @@
 
-
 document.addEventListener("DOMContentLoaded", () => {
 
   // 1. MOBILE MENU
@@ -19,81 +18,144 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 2. FORMS AND SERVICES
+  const forms = [
+    {
+      title: "National Scholarship Portal",
+      category: "Scholarship",
+      description: "केंद्र सरकार की छात्रवृत्ति योजनाएँ।",
+      url: "https://scholarships.gov.in/"
+    },
+    {
+      title: "राजस्थान छात्रवृत्ति",
+      category: "Scholarship",
+      description: "राजस्थान की छात्रवृत्ति योजनाओं की जानकारी।",
+      url: "https://sje.rajasthan.gov.in/"
+    },
+    {
+      title: "राजस्थान SSO",
+      category: "Government",
+      description: "राजस्थान की ऑनलाइन सरकारी सेवाएँ।",
+      url: "https://sso.rajasthan.gov.in/"
+    },
+    {
+      title: "DigiLocker",
+      category: "Document",
+      description: "डिजिटल दस्तावेज़ प्राप्त करने की सुविधा।",
+      url: "https://www.digilocker.gov.in/"
+    },
+    {
+      title: "VMOU",
+      category: "Government",
+      description: "प्रवेश, परीक्षा और परिणाम की जानकारी।",
+      url: "https://www.vmou.ac.in/"
+    },
+    {
+      title: "REET",
+      category: "Government",
+      description: "REET परीक्षा की आधिकारिक जानकारी।",
+      url: "https://rajeduboard.rajasthan.gov.in/"
+    },
+    {
+      title: "Aadhaar Services",
+      category: "Document",
+      description: "आधार कार्ड की ऑनलाइन सेवाएँ।",
+      url: "https://myaadhaar.uidai.gov.in/"
+    },
+    {
+      title: "राजस्थान जन आधार",
+      category: "Document",
+      description: "जन आधार नामांकन और अपडेट।",
+      url: "https://janaadhaar.rajasthan.gov.in/"
+    },
+    {
+      title: "PAN Card Services",
+      category: "Document",
+      description: "PAN और e-PAN से जुड़ी सेवाएँ।",
+      url: "https://www.incometax.gov.in/iec/foportal/"
+    },
+    {
+      title: "Voter Services",
+      category: "Document",
+      description: "वोटर पंजीकरण और पहचान पत्र सेवाएँ।",
+      url: "https://voters.eci.gov.in/"
+    }
+  ];
 
+  const formsList = document.getElementById("formsList");
+  const formSearch = document.getElementById("formSearch");
+  const formFilter = document.getElementById("formFilter");
 
-const forms = [
-  {
-    title: "National Scholarship Portal",
-    category: "Scholarship",
-    description: "केंद्र सरकार की छात्रवृत्ति योजनाएँ।",
-    url: "https://scholarships.gov.in/"
-  },
-  {
-    title: "राजस्थान छात्रवृत्ति",
-    category: "Scholarship",
-    description: "राजस्थान की छात्रवृत्ति योजनाओं की जानकारी।",
-    url: "https://sje.rajasthan.gov.in/"
-  },
-  {
-    title: "राजस्थान SSO",
-    category: "Government",
-    description: "राजस्थान की ऑनलाइन सरकारी सेवाएँ।",
-    url: "https://sso.rajasthan.gov.in/"
-  },
-  {
-    title: "DigiLocker",
-    category: "Document",
-    description: "डिजिटल दस्तावेज़ प्राप्त करने की सुविधा।",
-    url: "https://www.digilocker.gov.in/"
-  },
-  {
-    title: "VMOU",
-    category: "Government",
-    description: "प्रवेश, परीक्षा और परिणाम की जानकारी।",
-    url: "https://www.vmou.ac.in/"
-  },
-  {
-    title: "REET",
-    category: "Government",
-    description: "REET परीक्षा से संबंधित आधिकारिक जानकारी।",
-    url: "https://rajeduboard.rajasthan.gov.in/"
-  },
-  {
-    title: "Aadhaar Services",
-    category: "Document",
-    description: "आधार कार्ड की आधिकारिक ऑनलाइन सेवाएँ।",
-    url: "https://myaadhaar.uidai.gov.in/"
-  },
-  {
-    title: "राजस्थान जन आधार",
-    category: "Document",
-    description: "जन आधार नामांकन, ई-कार्ड और अपडेट।",
-    url: "https://janaadhaar.rajasthan.gov.in/"
-  },
-  {
-    title: "PAN Card Services",
-    category: "Document",
-    description: "PAN और e-PAN से जुड़ी आधिकारिक सेवाएँ।",
-    url: "https://www.incometax.gov.in/iec/foportal/"
-  },
-  {
-    title: "Voter Services",
-    category: "Document",
-    description: "वोटर पंजीकरण और पहचान पत्र सेवाएँ (18 वर्ष या अधिक)।",
-    url: "https://voters.eci.gov.in/"
+  function renderForms() {
+    if (!formsList) return;
+
+    const search = formSearch ? formSearch.value.toLowerCase().trim() : "";
+    const filter = formFilter ? formFilter.value : "All";
+
+    const filteredForms = forms.filter(form => {
+      const matchesSearch =
+        form.title.toLowerCase().includes(search) ||
+        form.description.toLowerCase().includes(search);
+
+      const matchesFilter =
+        filter === "All" || form.category === filter;
+
+      return matchesSearch && matchesFilter;
+    });
+
+    formsList.innerHTML = "";
+
+    if (filteredForms.length === 0) {
+      formsList.textContent = "कोई जानकारी नहीं मिली।";
+      return;
+    }
+
+    filteredForms.forEach(form => {
+      const card = document.createElement("article");
+      card.className = "form-card";
+
+      const title = document.createElement("h3");
+      title.textContent = form.title;
+
+      const category = document.createElement("p");
+      category.textContent = "श्रेणी: " + form.category;
+
+      const description = document.createElement("p");
+      description.textContent = form.description;
+
+      const link = document.createElement("a");
+      link.href = form.url;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "आधिकारिक वेबसाइट खोलें →";
+
+      card.append(title, category, description, link);
+      formsList.appendChild(card);
+    });
   }
-]
-  ;  // 3. SCHOLARSHIP FINDER
+
+  if (formSearch) {
+    formSearch.addEventListener("input", renderForms);
+  }
+
+  if (formFilter) {
+    formFilter.addEventListener("change", renderForms);
+  }
+
+  renderForms();
+
+  // 3. SCHOLARSHIP FINDER
   const findScholarships = document.getElementById("findScholarships");
   const scholarshipResult = document.getElementById("scholarshipResult");
 
   if (findScholarships && scholarshipResult) {
     findScholarships.addEventListener("click", () => {
-      const level = document.getElementById("classLevel").value;
-      const state = document.getElementById("state").value;
-      const category = document.getElementById("category").value;
+      const level = document.getElementById("classLevel");
+      const state = document.getElementById("state");
+      const category = document.getElementById("category");
 
-      if (!level || !state || !category) {
+      if (!level || !state || !category) return;
+
+      if (!level.value || !state.value || !category.value) {
         scholarshipResult.textContent =
           "कृपया पढ़ाई, राज्य और वर्ग की जानकारी चुनें।";
         return;
@@ -103,20 +165,23 @@ const forms = [
 
       const message = document.createElement("p");
       message.textContent =
-        "आपकी जानकारी के आधार पर इन पोर्टल पर योजनाएँ जाँचें। पात्रता की पुष्टि आधिकारिक नियमों से करें।";
+        "अपनी जानकारी के अनुसार इन आधिकारिक पोर्टल पर योजनाएँ जाँचें। पात्रता की पुष्टि संबंधित नियमों से करें।";
+
+      scholarshipResult.appendChild(message);
 
       const portals = [
         {
           name: "National Scholarship Portal",
           url: "https://scholarships.gov.in/"
-        },
-        {
-          name: "राजस्थान सामाजिक न्याय विभाग",
-          url: "https://sje.rajasthan.gov.in/"
         }
       ];
 
-      scholarshipResult.appendChild(message);
+      if (state.value.toLowerCase().includes("rajasthan")) {
+        portals.push({
+          name: "राजस्थान सामाजिक न्याय विभाग",
+          url: "https://sje.rajasthan.gov.in/"
+        });
+      }
 
       portals.forEach(portal => {
         const link = document.createElement("a");
@@ -147,9 +212,17 @@ const forms = [
   ];
 
   if (checklistItems) {
-    const savedChecks = JSON.parse(
-      localStorage.getItem("formsaathiChecklist") || "[]"
-    );
+    checklistItems.innerHTML = "";
+
+    let savedChecks = [];
+
+    try {
+      savedChecks = JSON.parse(
+        localStorage.getItem("formsaathiChecklist") || "[]"
+      );
+    } catch (error) {
+      savedChecks = [];
+    }
 
     documents.forEach((documentName, index) => {
       const label = document.createElement("label");
@@ -160,12 +233,18 @@ const forms = [
       checkbox.checked = savedChecks.includes(index);
 
       checkbox.addEventListener("change", () => {
-        const current = JSON.parse(
-          localStorage.getItem("formsaathiChecklist") || "[]"
-        );
+        let current = [];
+
+        try {
+          current = JSON.parse(
+            localStorage.getItem("formsaathiChecklist") || "[]"
+          );
+        } catch (error) {
+          current = [];
+        }
 
         const updated = checkbox.checked
-          ? [...current, index]
+          ? [...current.filter(item => item !== index), index]
           : current.filter(item => item !== index);
 
         localStorage.setItem(
@@ -184,70 +263,71 @@ const forms = [
 
   // 5. FAQ ASSISTANT
   const chatBody = document.getElementById("chatBody");
+  const userQuestion = document.getElementById("userQuestion");
+  const sendQuestion = document.getElementById("sendQuestion");
 
   const answers = {
     "स्कॉलरशिप के लिए कौन से दस्तावेज़ चाहिए?":
       "आमतौर पर आधार कार्ड, आय प्रमाण पत्र, बैंक विवरण, अंकतालिका और फोटो की जरूरत हो सकती है। योजना के नियम जरूर जाँचें।",
 
     "फॉर्म भरने से पहले क्या जाँचें?":
-      "अपना नाम, जन्मतिथि, शैक्षणिक जानकारी, दस्तावेज़ और आवेदन की अंतिम तारीख ध्यान से जाँचें।",
+      "नाम, जन्मतिथि, शैक्षणिक जानकारी, दस्तावेज़ और आवेदन की अंतिम तारीख ध्यान से जाँचें।",
 
     "आवेदन की सही तारीख कहाँ देखें?":
       "आवेदन की तारीख संबंधित सरकारी विभाग या आधिकारिक भर्ती पोर्टल पर देखें।"
   };
 
-  document.querySelectorAll("[data-question]").forEach(button => {
-    button.addEventListener("click", () => {  const userQuestion = document.getElementById("userQuestion");
-  const sendQuestion = document.getElementById("sendQuestion");
+  function addChatMessage(question, answer) {
+    if (!chatBody) return;
 
-  if (userQuestion && sendQuestion && chatBody) {
+    const userBubble = document.createElement("div");
+    userBubble.className = "bubble user";
+    userBubble.textContent = question;
+
+    const answerBubble = document.createElement("div");
+    answerBubble.className = "bubble bot";
+    answerBubble.textContent = answer;
+
+    chatBody.append(userBubble, answerBubble);
+  }
+
+  document.querySelectorAll("[data-question]").forEach(button => {
+    button.addEventListener("click", () => {
+      const question = button.dataset.question;
+      const answer = answers[question] ||
+        "कृपया संबंधित आधिकारिक पोर्टल पर जानकारी जाँचें।";
+
+      addChatMessage(question, answer);
+    });
+  });
+
+  if (sendQuestion && userQuestion && chatBody) {
     sendQuestion.addEventListener("click", () => {
       const question = userQuestion.value.trim();
 
       if (!question) return;
 
-      const userBubble = document.createElement("div");
-      userBubble.className = "bubble user";
-      userBubble.textContent = question;
-
-      const answerBubble = document.createElement("div");
-      answerBubble.className = "bubble bot";
-
       const text = question.toLowerCase();
+      let answer;
 
-      if (text.includes("स्कॉलरशिप")) {
-        answerBubble.textContent =
+      if (text.includes("स्कॉलरशिप") || text.includes("छात्रवृत्ति")) {
+        answer =
           "छात्रवृत्ति के लिए National Scholarship Portal और अपने राज्य के आधिकारिक पोर्टल पर पात्रता, तारीख और दस्तावेज़ जाँचें।";
       } else if (text.includes("फॉर्म")) {
-        answerBubble.textContent =
+        answer =
           "फॉर्म भरने से पहले नाम, जन्मतिथि, योग्यता, दस्तावेज़ और अंतिम तारीख जाँचें।";
       } else if (text.includes("भर्ती") || text.includes("नौकरी")) {
-        answerBubble.textContent =
+        answer =
           "भर्ती की जानकारी RSSB, RPSC, SSC और UPSC की आधिकारिक वेबसाइट पर देखें।";
       } else {
-        answerBubble.textContent =
+        answer =
           "इस सवाल का जवाब अभी उपलब्ध नहीं है। कृपया संबंधित सरकारी पोर्टल पर जानकारी जाँचें।";
       }
 
-      chatBody.append(userBubble, answerBubble);
+      addChatMessage(question, answer);
       userQuestion.value = "";
     });
   }
-      if (!chatBody) return;
-
-      const question = button.dataset.question;
-      const userBubble = document.createElement("div");
-      userBubble.className = "bubble user";
-      userBubble.textContent = question;
-
-      const answerBubble = document.createElement("div");
-      answerBubble.className = "bubble bot";
-      answerBubble.textContent =
-        answers[question] || "कृपया संबंधित आधिकारिक पोर्टल पर जानकारी जाँचें।";
-
-      chatBody.append(userBubble, answerBubble);
-    });
-  });
 
   // 6. APPLICATION TRACKER
   const trackerName = document.getElementById("trackerName");
@@ -256,9 +336,15 @@ const forms = [
   const addTracker = document.getElementById("addTracker");
   const trackerList = document.getElementById("trackerList");
 
-  let applications = JSON.parse(
-    localStorage.getItem("formsaathiApplications") || "[]"
-  );
+  let applications = [];
+
+  try {
+    applications = JSON.parse(
+      localStorage.getItem("formsaathiApplications") || "[]"
+    );
+  } catch (error) {
+    applications = [];
+  }
 
   function renderApplications() {
     if (!trackerList) return;
@@ -285,6 +371,7 @@ const forms = [
 
       const remove = document.createElement("button");
       remove.textContent = "हटाएँ";
+
       remove.addEventListener("click", () => {
         applications.splice(index, 1);
         saveApplications();
@@ -303,7 +390,7 @@ const forms = [
     renderApplications();
   }
 
-  if (addTracker) {
+  if (addTracker && trackerName && trackerDate && trackerStatus) {
     addTracker.addEventListener("click", () => {
       const name = trackerName.value.trim();
 
@@ -332,9 +419,15 @@ const forms = [
   const addExam = document.getElementById("addExam");
   const examList = document.getElementById("examList");
 
-  let exams = JSON.parse(
-    localStorage.getItem("formsaathiExams") || "[]"
-  );
+  let exams = [];
+
+  try {
+    exams = JSON.parse(
+      localStorage.getItem("formsaathiExams") || "[]"
+    );
+  } catch (error) {
+    exams = [];
+  }
 
   function getDaysLeft(dateString) {
     const today = new Date();
@@ -366,6 +459,7 @@ const forms = [
 
       const days = getDaysLeft(exam.date);
       const remaining = document.createElement("p");
+
       remaining.textContent =
         days > 0
           ? "परीक्षा में " + days + " दिन बाकी हैं।"
@@ -391,7 +485,7 @@ const forms = [
     renderExams();
   }
 
-  if (addExam) {
+  if (addExam && examName && examDate) {
     addExam.addEventListener("click", () => {
       const name = examName.value.trim();
       const date = examDate.value;
@@ -418,10 +512,10 @@ const forms = [
 
   // 8. SERVICE WORKER
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js").catch(error => {
+    navigator.serviceWorker.register("./sw.js").catch(error => {
       console.log("Service Worker registration failed:", error);
     });
   }
 
 });
-                      
+                                       
