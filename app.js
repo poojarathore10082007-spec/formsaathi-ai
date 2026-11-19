@@ -169,11 +169,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
       scholarshipResult.appendChild(message);
 
-      const portals = [
+      const portconst portals = [
+  {
+    name: "National Scholarship Portal (NSP)",
+    url: "https://scholarships.gov.in/"
+  },
+  {
+    name: "SC / OBC / EWS योजनाएँ",
+    url: "https://socialjustice.gov.in/scheme-cat"
+  },
+  {
+    name: "ST छात्रवृत्ति",
+    url: "https://tribal.nic.in/ScholarshiP.aspx"
+  },
+  {
+    name: "UGC छात्रवृत्ति",
+    url: "https://www.ugc.gov.in/"
+  },
+  {
+    name: "AICTE छात्रवृत्ति",
+    url: "https://www.aicte-india.org/bureaus/rifd/Scholarship-Schemes"
+  },
+  {
+    name: "उच्च शिक्षा छात्रवृत्ति",
+    url: "https://www.education.gov.in/"
+  }
+];als = [
         {
-          name: "National Scholarship Portal",
-          url: "https://scholarships.gov.in/"
-        }
       ];
 
       if (state.value.toLowerCase().includes("rajasthan")) {
