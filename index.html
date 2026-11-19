@@ -1,19 +1,19 @@
 
 <!DOCTYPE html>
 <html lang="hi">
-<head<meta name="theme-color" content="#1746a2">>
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#1746a2">
   <meta name="description" content="FormSaathi AI — विद्यार्थियों के फॉर्म, छात्रवृत्ति और सरकारी भर्ती की जानकारी">
+
   <title>FormSaathi AI</title>
+
   <link rel="manifest" href="manifest.json">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-<head><link rel="manifest" href="manifest.json">
-<body>
+</head>
 
-<header class="topbar">
 <body>
 
 <header class="topbar">
@@ -88,6 +88,7 @@
   </div>
 
   <div class="cards" id="latestJobs">
+
     <article class="form-card">
       <h3>RSSB राजस्थान</h3>
       <p>राजस्थान की सरकारी भर्तियाँ और विज्ञापन।</p>
@@ -107,23 +108,32 @@
     </article>
 
     <article class="form-card">
-      <article class="form-card">
-  <h3>Railway Recruitment Board</h3>
-  <p>भारतीय रेलवे की भर्ती और आधिकारिक नोटिस।</p>
-  <a href="https://rrb.indianrailways.gov.in/"
-     target="_blank" rel="noopener noreferrer">
-    रेलवे भर्ती देखें →
-  </a>
-</article>
+      <h3>UPSC</h3>
+      <p>केंद्र सरकार की विभिन्न परीक्षाओं और भर्तियों के विज्ञापन।</p>
+      <a href="https://www.upsc.gov.in/recruitment/recruitment-advertisement" target="_blank" rel="noopener noreferrer">भर्ती विज्ञापन देखें →</a>
+    </article>
 
-<article class="form-card">
-  <h3>National Career Service</h3>
-  <p>सरकारी और निजी नौकरी के अवसर खोजें।</p>
-  <a href="https://www.ncs.gov.in/"
-     target="_blank" rel="noopener noreferrer">
-    नौकरी खोजें →
-  </a>
-</article>
+    <article class="form-card">
+      <h3>Railway Recruitment Board</h3>
+      <p>भारतीय रेलवे की भर्ती और आधिकारिक नोटिस।</p>
+      <a href="https://rrb.indianrailways.gov.in/" target="_blank" rel="noopener noreferrer">रेलवे भर्ती देखें →</a>
+    </article>
+
+    <article class="form-card">
+      <h3>National Career Service</h3>
+      <p>सरकारी और निजी नौकरी के अवसर खोजें।</p>
+      <a href="https://www.ncs.gov.in/" target="_blank" rel="noopener noreferrer">नौकरी खोजें →</a>
+    </article>
+
+  </div>
+</section>
+
+<section class="section" id="scholarship">
+  <div class="section-head">
+    <div>
+      <span class="eyebrow">SCHOLARSHIP FINDER</span>
+      <h2>स्कॉलरशिप खोजें</h2>
+      <p>अपनी जानकारी चुनकर संबंधित छात्रवृत्ति पोर्टल देखें।</p>
     </div>
   </div>
 
@@ -139,6 +149,7 @@
         <option>अन्य</option>
       </select>
     </div>
+
     <div>
       <label for="state">राज्य</label>
       <select id="state">
@@ -147,6 +158,7 @@
         <option value="All India">अन्य राज्य</option>
       </select>
     </div>
+
     <div>
       <label for="category">वर्ग</label>
       <select id="category">
@@ -158,7 +170,9 @@
         <option>अन्य</option>
       </select>
     </div>
+
     <button class="primary-btn full" id="findScholarships">विकल्प देखें →</button>
+
     <div id="scholarshipResult" class="result" aria-live="polite">
       अपनी जानकारी चुनकर “विकल्प देखें” दबाएँ।
     </div>
@@ -173,6 +187,7 @@
       <p>जरूरी दस्तावेज़ों को टिक करके तैयारी ट्रैक करें।</p>
     </div>
   </div>
+
   <div class="checklist" id="checklistItems"></div>
   <p class="muted">चेकलिस्ट इसी ब्राउज़र में सेव रहती है। हर योजना में दस्तावेज़ अलग हो सकते हैं।</p>
 </section>
@@ -204,6 +219,7 @@
     <button class="primary-btn full" id="addTracker">आवेदन जोड़ें</button>
     <div id="trackerList" class="cards"></div>
   </div>
+
   <p class="muted">जानकारी इसी ब्राउज़र में सेव होगी। इसमें पासवर्ड, आधार या बैंक विवरण न डालें।</p>
 </section>
 
@@ -226,6 +242,7 @@
     <button class="primary-btn full" id="addExam">परीक्षा जोड़ें</button>
     <div id="examList" class="cards"></div>
   </div>
+
   <p class="muted">यह व्यक्तिगत रिमाइंडर है। परीक्षा की वास्तविक तारीख आधिकारिक नोटिफिकेशन से जाँचें।</p>
 </section>
 
@@ -239,26 +256,35 @@
   </div>
 
   <div class="assistant">
+
     <div class="chat-head">
       <span class="bot-icon">✦</span>
-      <div><b>FormSaathi सहायता</b><small>डेमो FAQ सहायक</small></div>
+      <div>
+        <b>FormSaathi सहायता</b>
+        <small>डेमो FAQ सहायक</small>
+      </div>
       <span class="online">●</span>
     </div>
+
     <div class="chat-body" id="chatBody">
       <div class="bubble bot">नमस्ते! मैं फॉर्म से जुड़ी सामान्य जानकारी में मदद कर सकता हूँ।</div>
     </div>
-    <div<div class="chat-input">
-  <input
-    type="text"
-    id="userQuestion"
-    placeholder="अपना सवाल यहाँ लिखें..."
-  >
-  <button id="sendQuestion">भेजें</button>
-    </div >
+
+    <div class="quick-questions">
       <button data-question="स्कॉलरशिप के लिए कौन से दस्तावेज़ चाहिए?">स्कॉलरशिप के दस्तावेज़?</button>
       <button data-question="फॉर्म भरने से पहले क्या जाँचें?">फॉर्म भरने से पहले?</button>
       <button data-question="आवेदन की सही तारीख कहाँ देखें?">आवेदन की तारीख?</button>
     </div>
+
+    <div class="chat-input">
+      <input
+        type="text"
+        id="userQuestion"
+        placeholder="अपना सवाल यहाँ लिखें..."
+      >
+      <button id="sendQuestion">भेजें</button>
+    </div>
+
   </div>
 </section>
 
@@ -278,7 +304,9 @@
     <span class="logo">F</span>
     <span>FormSaathi <b>AI</b><small>विद्यार्थियों के साथ, हर कदम पर।</small></span>
   </div>
+
   <p>© 2026 FormSaathi AI • जानकारी को आधिकारिक पोर्टल से सत्यापित करें।</p>
+
   <div class="footer-links">
     <a href="privacy.html">गोपनीयता</a>
     <a href="disclaimer.html">अस्वीकरण</a>
@@ -287,5 +315,5 @@
 
 <script src="app.js"></script>
 </body>
-                                      </html>
-                                      
+  </html>
+  
