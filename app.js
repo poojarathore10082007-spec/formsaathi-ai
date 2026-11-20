@@ -530,8 +530,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   renderExams();
-
-  // 8. SERVICE WORKER
+    // 8. SERVICE WORKER
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js").catch(error => {
       console.log("Service Worker registration failed:", error);
@@ -539,4 +538,3 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-                                       
