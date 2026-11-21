@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FormSaathi AI – छात्रों का डिजिटल साथी</title>
+<meta name="theme-color" content="#1746A2">
+<meta name="description" content="छात्रवृत्ति, सरकारी नौकरी, फॉर्म और परीक्षा जानकारी – विद्यार्थियों के लिए।">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <button class="icon-btn" id="menuBtn" aria-label="मेनू खोलें" aria-expanded="false">☰</button>
+  <a href="#home" class="brand"><img src="icon.svg" alt="" width="32" height="32"><span>FormSaathi <b>AI</b></span></a>
+  <button class="icon-btn" id="installBtn" hidden aria-label="ऐप इंस्टॉल करें">⬇</button>
+</header>
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="मुख्य मेनू">
+  <h3>मेनू</h3>
+  <a href="#home">🏠 होम</a><a href="#scholarships">🎓 छात्रवृत्ति</a><a href="#jobs">💼 सरकारी नौकरी</a>
+  <a href="#forms">📄 फॉर्म और जानकारी</a><a href="#chat">🤖 AI सहायक</a>
+  <button data-info="about">ℹ️ हमारे बारे में</button><button data-info="contact">✉️ संपर्क</button>
+  <button id="installBtn2">📲 ऐप इंस्टॉल करें</button>
+</nav>
+
+<main>
+<section id="home" class="view">
+  <div class="hero">
+    <p class="hi">नमस्ते, विद्यार्थी 👋</p>
+    <h1>आपकी पढ़ाई और करियर का <br>भरोसेमंद साथी</h1>
+    <p>छात्रवृत्ति, भर्ती, फॉर्म और परीक्षा की जानकारी एक जगह।</p>
+    <form id="searchForm" class="search" role="search">
+      <input id="searchInput" type="search" placeholder="छात्रवृत्ति, परीक्षा, नौकरी खोजें…" aria-label="खोज">
+      <button type="submit">खोजें</button>
+    </form>
+  </div>
+  <div class="quick">
+    <a href="#scholarships"><i>🎓</i>छात्रवृत्ति खोजें</a>
+    <a href="#jobs"><i>💼</i>सरकारी नौकरी</a>
+    <a href="#forms" data-cat="सरकारी फॉर्म"><i>📝</i>सरकारी फॉर्म</a>
+    <a href="#forms" data-cat="प्रवेश"><i>🏫</i>प्रवेश एवं एडमिशन</a>
+    <a href="#forms" data-cat="परीक्षा"><i>📚</i>परीक्षा जानकारी</a>
+    <a href="#forms" data-cat="रिजल्ट"><i>📊</i>रिजल्ट</a>
+  </div>
+  <div class="demo-note">⚠️ इस ऐप में दिखाया गया डेटा <b>नमूना (डेमो)</b> है। तिथि, राशि और पात्रता हमेशा आधिकारिक वेबसाइट पर जाँचें।</div>
+  <h2>ताज़ा अपडेट</h2><div class="list" id="homeUpdates"></div>
+  <h2>लोकप्रिय छात्रवृत्तियाँ <a href="#scholarships" class="more">सभी देखें</a></h2><div class="list" id="homeSch"></div>
+  <h2>राजस्थान भर्ती अपडेट <a href="#jobs" class="more">सभी देखें</a></h2><div class="list" id="homeJobs"></div>
+  <h2>उपयोगी टूल्स</h2>
+  <div class="quick tools">
+    <button id="toolAge"><i>🎂</i>आयु कैलकुलेटर</button>
+    <button id="toolDocs"><i>🗂️</i>दस्तावेज़ चेकलिस्ट</button>
+    <a href="#chat"><i>🤖</i>AI सहायक</a>
+  </div>
+</section>
+
+<section id="scholarships" class="view" hidden>
+  <h1 class="pt">🎓 छात्रवृत्ति खोजक</h1>
+  <form id="schForm" class="filters">
+    <label>स्तर<select id="fLevel"><option value="">सभी</option><option value="c910">कक्षा 9–10</option><option value="c1112">कक्षा 11–12</option><option value="grad">स्नातक (BA/BSc/BCom)</option><option value="dip">डिप्लोमा</option><option value="bstc">D.El.Ed / BSTC</option><option value="pg">स्नातकोत्तर</option></select></label>
+    <label>राज्य<select id="fState"><option value="">सभी</option><option>राजस्थान</option><option>केंद्र सरकार</option></select></label>
+    <label>श्रेणी<select id="fCat"><option value="">सभी</option><option>सामान्य</option><option>OBC</option><option>SC</option><option>ST</option><option>EWS</option></select></label>
+    <label>पारिवारिक आय (वार्षिक)<select id="fInc"><option value="">सभी</option><option value="1">₹1 लाख तक</option><option value="2.5">₹2.5 लाख तक</option><option value="8">₹8 लाख तक</option><option value="99">₹8 लाख से अधिक</option></select></label>
+    <label>लिंग<select id="fGen"><option value="">सभी</option><option value="f">छात्रा</option><option value="m">छात्र</option></select></label>
+    <label>प्रकार<select id="fType"><option value="">सभी</option><option>मेरिट आधारित</option><option>आय आधारित</option><option>श्रेणी आधारित</option></select></label>
+    <div class="row"><button type="submit" class="btn">🔍 खोजें</button><button type="reset" class="btn ghost" id="schReset">रीसेट</button></div>
+  </form>
+  <p id="schCount" class="count" aria-live="polite"></p><div class="list" id="schList"></div>
+</section>
+
+<section id="jobs" class="view" hidden>
+  <h1 class="pt">💼 सरकारी नौकरी</h1>
+  <div class="chips" id="jobChips"></div>
+  <input class="field" id="jobSearch" type="search" placeholder="भर्ती खोजें…" aria-label="भर्ती खोजें">
+  <p id="jobCount" class="count" aria-live="polite"></p><div class="list" id="jobList"></div>
+</section>
+
+<section id="forms" class="view" hidden>
+  <h1 class="pt">📄 फॉर्म और जानकारी</h1>
+  <div class="chips" id="formChips"></div>
+  <input class="field" id="formSearch" type="search" placeholder="फॉर्म / जानकारी खोजें…" aria-label="खोजें">
+  <p id="formCount" class="count" aria-live="polite"></p><div class="list" id="formList"></div>
+</section>
+
+<section id="results" class="view" hidden>
+  <h1 class="pt">🔎 खोज परिणाम</h1><p id="resCount" class="count"></p><div class="list" id="resList"></div>
+</section>
+
+<section id="chat" class="view chatview" hidden>
+  <h1 class="pt">🤖 AI सहायक <span class="tag">डेमो मोड</span></h1>
+  <p class="demo-note">यह <b>डेमो सहायक</b> है – कोई वास्तविक AI API जुड़ी नहीं है। उत्तर पहले से लिखे हुए हैं।</p>
+  <div class="chips" id="sugg"></div>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <form id="chatForm" class="chatbar">
+    <button type="button" id="clearChat" class="icon-btn" aria-label="चैट साफ़ करें">🗑</button>
+    <input id="chatInput" placeholder="अपना सवाल लिखें…" autocomplete="off" aria-label="संदेश">
+    <button type="submit" class="send" aria-label="भेजें">➤</button>
+  </form>
+</section>
+</main>
+
+<footer class="foot">
+  <div><button data-info="about">हमारे बारे में</button><button data-info="contact">संपर्क</button><button data-info="privacy">गोपनीयता नीति</button><button data-info="disclaimer">अस्वीकरण</button></div>
+  <p>© 2026 FormSaathi AI · यह सरकारी वेबसाइट नहीं है।</p>
+</footer>
+
+<nav class="bottom" aria-label="नीचे नेविगेशन">
+  <a href="#home"><i>🏠</i>होम</a><a href="#scholarships"><i>🎓</i>छात्रवृत्ति</a><a href="#jobs"><i>💼</i>नौकरी</a><a href="#forms"><i>📄</i>फॉर्म</a><a href="#chat"><i>🤖</i>AI</a>
+</nav>
+
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="sheet"><button class="x" id="mClose" aria-label="बंद करें">✕</button><h2 id="mTitle"></h2><div id="mBody"></div></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="script.js"></script>
+</body>
+</html>
